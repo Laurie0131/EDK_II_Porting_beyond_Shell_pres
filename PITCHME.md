@@ -100,83 +100,6 @@ Note:
 
 
 
----?image=/assets/images/slides/Slide3.JPG
-<!-- .slide: data-transition="none" -->
-@title[Features Needed to Access OS]
-<p align="right"><span class="gold" >Features Needed to Access OS</span></p>
-
-
-Note:
-
-- Add-in Card/ UEFI Driver Related
-  - USB
-  - LAN
-  - IDE/SATA
-  - Graphics 
-  - Integrated PCI Devices 
-
-- Platform Related DXE Driver Related
-  - SMM
-  - ACPI
-  - ACPI S3
-  - BDS
-  - CSM
-  - SMBIOS
-
-
-
-
-+++?image=/assets/images/slides/Slide4.JPG
-<!-- .slide: data-background-transition="none" -->
-<!-- .slide: data-transition="none" -->
-@title[Features Needed to Access OS 02]
-<p align="right"><span class="gold" >Features Needed to Access OS</span></p>
-
-
-Note:
-
-- Add-in Card/ UEFI Driver Related
-  - USB
-  - LAN
-  - IDE/SATA
-  - Graphics 
-  - Integrated PCI Devices 
-
-- Platform Related DXE Driver Related
-  - SMM
-  - ACPI
-  - ACPI S3
-  - BDS
-  - CSM
-  - SMBIOS
-
-
-
-+++?image=/assets/images/slides/Slide5.JPG
-<!-- .slide: data-background-transition="none" -->
-<!-- .slide: data-transition="none" -->
-@title[Features Needed to Access OS 03]
-<p align="right"><span class="gold" >Features Needed to Access OS</span></p>
-
-
-Note:
-
-- Add-in Card/ UEFI Driver Related
-  - USB
-  - LAN
-  - IDE/SATA
-  - Graphics 
-  - Integrated PCI Devices 
-
-- Platform Related DXE Driver Related
-  - SMM
-  - ACPI
-  - ACPI S3
-  - BDS
-  - CSM
-  - SMBIOS
-
-
 ---?image=assets/images/binary-strings-black2.jpg
 @title[Add-in Card Section]
 <br><br><br><br><br><br><br>
@@ -187,7 +110,7 @@ Note:
 
 ---?image=/assets/images/slides/Slide7.JPG
 @title[Protocol Stack: IDE/SATA]
-<p align="right"><span class="gold" >Protocol Stack: IDE/SATA</span></p>
+<p align="right"><span class="gold" ><b>Protocol Stack: IDE/SATA</b></span></p>
 
 
 Note:
@@ -206,7 +129,7 @@ Note:
 
 ---?image=/assets/images/slides/Slide9.JPG
 @title[Driver Stack: IDE/SATA]
-<p align="right"><span class="gold" >Driver Stack: IDE/SATA</span></p>
+<p align="right"><span class="gold" ><b>Driver Stack: IDE/SATA</b></span></p>
 
 
 Note:
@@ -221,7 +144,7 @@ Currently our reference drivers support both PATA and SATA.
 
 ---?image=/assets/images/slides/Slide11.JPG
 @title[Protocol Stack: USB]
-<p align="right"><span class="gold" >Protocol Stack: USB</span></p>
+<p align="right"><span class="gold" ><b>Protocol Stack: USB</b></span></p>
 
 
 Note:
@@ -231,7 +154,7 @@ Notice that these protocols are Industry standard
 
 ---?image=/assets/images/slides/Slide13.JPG
 @title[Driver Stack: USB]
-<p align="right"><span class="gold" >Driver Stack: USB</span></p>
+<p align="right"><span class="gold" ><b>Driver Stack: USB</b></span></p>
 
 
 Note:
@@ -244,7 +167,7 @@ Notice that these drivers are Industry standard and probably will not need porti
 ---?image=/assets/images/slides/Slide15.JPG
 <!-- .slide: data-transition="none" -->
 @title[Protocol Stack: Network]
-<p align="right"><span class="gold" >Protocol Stack: Network</span></p>
+<p align="right"><span class="gold" ><b>Protocol Stack: Network<b></span></p>
 
 
 Note:
@@ -259,7 +182,7 @@ Note:
 <!-- .slide: data-background-transition="none" -->
 <!-- .slide: data-transition="none" -->
 @title[Protocol Stack: Network 02]
-<p align="right"><span class="gold" >Protocol Stack: Network</span></p>
+<p align="right"><span class="gold" ><b>Protocol Stack: Network</b></span></p>
 
 
 Note:
@@ -272,7 +195,7 @@ Note:
 
 ---?image=/assets/images/slides/Slide18.JPG
 @title[Driver Stack: Network]
-<p align="right"><span class="gold" >Driver Stack: Network</span></p>
+<p align="right"><span class="gold" ><b>Driver Stack: Network</b></span></p>
 
 
 Note:
@@ -290,7 +213,7 @@ Note:
 
 ---?image=/assets/images/slides/Slide20.JPG
 @title[Protocol & Driver Stack: Graphics]
-<p align="right"><span class="gold" >Protocol and Driver Stack: Graphics</span></p>
+<p align="right"><span class="gold" ><b>Protocol and Driver Stack: Graphics</b></span></p>
 
 
 Note:
@@ -305,6 +228,58 @@ Note:
 		  - Intel GOP Driver (IGD) 
   - MAX  gop binary  - (workspace)\silicon\Vlv2MiscBinariesPkg\GOP
 
+
+---
+@title[Integrated PCI Devices: Option ROMs]
+<p align="right"><span class="gold" >Integrated PCI Devices: Option ROMs</span></p>
+
+
+@snap[north-west span-20  ]
+<br>
+<br>
+@fa[check-circle fa-2x gp-bullet-cyan]
+<br>
+<br>
+<br>
+<br>
+@fa[check-circle fa-2x gp-bullet-yellow]
+<br>
+@snapend
+
+@snap[north-east span-80 fragment ]
+<br>
+<br>
+<br>
+<br>
+<p style="line-height:75%" align="left"><span style="font-size:0.9em">@color[yellow](DSC maps library class to library-instances)</span></p>
+<br>
+@snapend
+
+
+@snap[north-east span-80 fragment ]
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p style="line-height:75%" align="left"><span style="font-size:0.9em">Syntax in DSC File</span><br>
+<span style="font-size:0.65em; font-family:Consolas;">
+&nbsp;&nbsp;&nbsp;&nbsp;[libraryclasses] <br>
+&nbsp;&nbsp;&nbsp;&nbsp;LibraryClassName|Path/To/@color[#00ffff](LibInstanceNameInstance1).inf  </span> </p>  
+<br>
+@snapend
+
+
+
+Note:
+- These are onboard PCI devices
+- UEFI Device Driver Model- See Section 2.6.3 of UEFI Specification Follow the UEFI Driver Binding Protocol
+- EDK II Modules Example - OptionRomPkg/UndiRuntimeDxe 
+    - like the Intel Nic and IGD Drivers
+
+- Drivers can be implemented by platform firmware developers to support buses and devices in a specific platform. Drivers can also be implemented by add-in card vendors for devices that might be integrated into the platform hardware or added to a platform through an expansion sl 
 
 
 ---?image=/assets/images/slides/Slide22.JPG
