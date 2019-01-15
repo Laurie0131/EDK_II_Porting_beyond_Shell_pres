@@ -301,10 +301,11 @@ Note:
 @snap[north-west span-100 ]
 <br>
 <br>
-@box[bg-royal text-white rounded my-box-pad2  ](<p style="line-height:70%" ><span style="font-size:0.9em;" >Intel typically provides SMM Driver code<br>@size[.5em](You're only require to provide platform specific SMI handlers)<br>&nbsp;</span></p>)
+@box[bg-royal text-white rounded my-box-pad2  ](<p style="line-height:70%" ><span style="font-size:0.9em;" >Intel typically provides SMM Driver code<br>@size[.6em](You're only require to provide platform specific SMI handlers<br>&nbsp;)</span></p>)
 <br>
 @snapend
 
+<br>
 <br>
 <br>
 <p style="line-height:85%" align="left"><span style="font-size:0.9em;" >Base Protocol <br></span>
