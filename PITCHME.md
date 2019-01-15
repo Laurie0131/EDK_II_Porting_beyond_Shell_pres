@@ -239,10 +239,12 @@ Note:
 <br>
 <br>
 <br>
-@fa[check-circle fa-2x gp-bullet-cyan]
+@fa[certificate fa-2x gp-bullet-cyan]
 <br>
 <br>
-@fa[clipboard fa-2x gp-bullet-yellow]
+<br>
+<br>
+@fa[certificate fa-2x gp-bullet-yellow]
 <br>
 @snapend
 
@@ -258,6 +260,8 @@ Note:
 
 
 @snap[north-east span-80 fragment ]
+<br>
+<br>
 <br>
 <br>
 <br>
