@@ -231,18 +231,18 @@ Note:
 
 ---
 @title[Integrated PCI Devices: Option ROMs]
-<p align="right"><span class="gold" >Integrated PCI Devices: Option ROMs</span></p>
+<p align="right"><span class="gold" ><b>Integrated PCI Devices: Option ROMs</b></span></p>
 
 
 @snap[north-west span-20  ]
 <br>
 <br>
+<br>
+<br>
 @fa[check-circle fa-2x gp-bullet-cyan]
 <br>
 <br>
-<br>
-<br>
-@fa[check-circle fa-2x gp-bullet-yellow]
+@fa[clipboard-check fa-2x gp-bullet-yellow]
 <br>
 @snapend
 
@@ -251,7 +251,9 @@ Note:
 <br>
 <br>
 <br>
-<p style="line-height:75%" align="left"><span style="font-size:0.9em">@color[yellow](DSC maps library class to library-instances)</span></p>
+<p style="line-height:75%" align="left"><span style="font-size:0.9em">DSC maps library class to library-instances
+UEFI Device Driver Model- <br>@size[0.6em](See Section 2.6.3 of UEFI Specification <br>Follow the UEFI Driver Binding Protocol)
+</span></p>
 <br>
 @snapend
 
@@ -264,10 +266,10 @@ Note:
 <br>
 <br>
 <br>
-<p style="line-height:75%" align="left"><span style="font-size:0.9em">Syntax in DSC File</span><br>
-<span style="font-size:0.65em; font-family:Consolas;">
-&nbsp;&nbsp;&nbsp;&nbsp;[libraryclasses] <br>
-&nbsp;&nbsp;&nbsp;&nbsp;LibraryClassName|Path/To/@color[#00ffff](LibInstanceNameInstance1).inf  </span> </p>  
+<p style="line-height:75%" align="left"><span style="font-size:0.9em">EDK II Modules</span><br>
+<span style="font-size:0.65em; font-family:Consolas;">OptionRomPkg/UndiRuntimeDxe 
+&nbsp;&nbsp;&nbsp;&nbsp; 
+ </span> </p>  
 <br>
 @snapend
 
