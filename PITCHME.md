@@ -287,24 +287,65 @@ Note:
 - Drivers can be implemented by platform firmware developers to support buses and devices in a specific platform. Drivers can also be implemented by add-in card vendors for devices that might be integrated into the platform hardware or added to a platform through an expansion sl 
 
 
----?image=/assets/images/slides/Slide22.JPG
-@title[Integrated PCI Devices: Option ROMs]
-<p align="right"><span class="gold" >Integrated PCI Devices: Option ROMs</span></p>
-
-Note:
-- These are onboard PCI devices
-- UEFI Device Driver Model- See Section 2.6.3 of UEFI Specification Follow the UEFI Driver Binding Protocol
-- EDK II Modules Example - OptionRomPkg/UndiRuntimeDxe 
-    - like the Intel Nic and IGD Drivers
-
-- Drivers can be implemented by platform firmware developers to support buses and devices in a specific platform. Drivers can also be implemented by add-in card vendors for devices that might be integrated into the platform hardware or added to a platform through an expansion sl 
-
-
 ---?image=assets/images/binary-strings-black2.jpg
 @title[Platform DXE Drivers Section]
 <br><br><br><br><br><br><br>
 ### <span class="gold"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Platform DXE Drivers  </span>
 <span style="font-size:0.9em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+
+---
+@title[SMM]
+### <p align="right"><span class="gold" >SMM Related</span></p>
+
+@snap[north-west span-100 ]
+<br>
+<br>
+@box[bg-royal text-white rounded my-box-pad2  ](<p style="line-height:70%" ><span style="font-size:0.9em;" >Intel typically provides SMM Driver code<br>
+@size[.5em](You're only require to provide platform specific SMI handlers)
+<br>&nbsp;</span></p>)
+<br>
+@snapend
+<br>
+<br>
+<br>
+<p style="line-height:85%" align="left"><span style="font-size:0.9em;" >Base Protocol <br></span>
+<span style="font-size:0.65em; font-family:Consolas;" > /@color[red](IA32FamilyCpuPkg)/SmmBase/SmmBase.inf
+</span></p>
+
+<p style="line-height:85%" align="left"><span style="font-size:0.9em;" >Access Protocol (SMRAM)<br></span>
+<span style="font-size:0.65em; font-family:Consolas;" > /@color[red](&lt;MemCntlX&gt;Pkg)/SmmAccessDxe/SmmAccessDxe.inf
+</span></p>
+
+
+<p style="line-height:85%" align="left"><span style="font-size:0.9em;" >Control Protocol (SMI)<br></span>
+<span style="font-size:0.65em; font-family:Consolas;" > /@color[red](&lt;PchX&gt;Pkg)/SmmControlDxe/SmmControlDxe.inf
+</span></p>
+
+@snap[south-east span-100 ]
+@box[bg-black text-white my-box-pad2  ](<p style="line-height:40%" align="left"><span style="font-size:0.450em; font-family:Consolas; " >&nbsp;&nbsp;MinnowBoard Max<br>&nbsp;&nbsp;&nbsp;&nbsp;  - &lt;Access&gt; Vlv2DeviceRefCodePkg/ValleyView2Soc/CPU<br>&nbsp;&nbsp;&nbsp;&nbsp;  - &lt;Control&gt; Vlv2DeviceRefCodePkg/ValleyView2Soc/SouthCluster<br>&nbsp;&nbsp;</span></p>)
+@snapend
+
+Note:
+- Base Protocol
+  - Responsible for Processor state (in SMM) initialization and allocates SMM Memory
+    - /<XFamilyCpu>Pkg/SmmBase/SmmBase.inf
+- Access Protocol
+  - Controls the visibility of the SMRAM on the platform
+    - /<MemCntlX>Pkg/SmmAccessDxe/SmmAccessDxe.inf
+- Control Protocol
+  - Initiates SMI/PMI activations
+     - /<PchX>Pkg/SmmControlDxe/SmmControlDxe.inf
+
+- Additional notes:
+  - Get Drivers
+  - CPU and Silicon code from vendors should include all required SMM drivers
+  - You are required to provide platform-specific SMI handlers only
+ 
+- MinnowBoard Max
+  - <Access> Vlv2DeviceRefCodePkg/ValleyView2Soc/CPU
+  - <Control> Vlv2DeviceRefCodePkg/ValleyView2Soc/SouthCluster
+
 
  
 
