@@ -495,7 +495,6 @@ Note:
 ---
 @title[Compatibility Support Module (CSM)]
 <p align="right"><span class="gold" ><b>Compatibility Support Module (CSM)</b></span></p>
-<br>
 <ul style="list-style-type:none">
   <li><span style="font-size:01.1em" ><font color="#92d050"><b> CSM 32 Component</b></font></span></li>
    <ul style="list-style-type:none">
@@ -504,10 +503,10 @@ Note:
    </ul>
    <br>
   <li><span style="font-size:01.1em" ><font color="#92d050"><b>Platform Specific </b></font></span></li>
-  <ul style="list-style-type:none">
-   <li><span style="font-size:0.7em" >Legacy chipset support - <font face="Consolas">&lt;RefCode&gt;Pkg/&lt;SoC&gt;/SouthCluster/LegacyInterrupt/Dxe</font></span></li>
-   <li><span style="font-size:0.7em" >Platform specifics (i.e. MP tables) - <font face="Consolas">&lt;RefCode&gt;Pkg/&lt;SoC&gt;/CPU/CpuInit/Dxe/MpCommon</font></span></li>
-   <li><span style="font-size:0.7em" >Video ROM (may be platform specific) - <font face="Consolas">NewPlatformPkg/PciPlatform</font></span></li>
+  <ul style="list-style-type:none; line-height:0.7;">
+   <li><span style="font-size:0.65em" >Legacy chipset support - <font face="Consolas">&lt;RefCode&gt;Pkg/&lt;SoC&gt;/SouthCluster/LegacyInterrupt/Dxe</font></span></li>
+   <li><span style="font-size:0.65em" >Platform specifics (i.e. MP tables) - <font face="Consolas">&lt;RefCode&gt;Pkg/&lt;SoC&gt;/CPU/CpuInit/Dxe/MpCommon</font></span></li>
+   <li><span style="font-size:0.65em" >Video ROM (may be platform specific) - <font face="Consolas">NewPlatformPkg/PciPlatform</font></span></li>
  </ul>
 
 </ul>
