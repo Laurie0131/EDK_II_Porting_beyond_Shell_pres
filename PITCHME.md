@@ -406,9 +406,9 @@ Note:
 
 <ul style="list-style-type:none">  
   <li>@fa[circle gp-bullet-cyan]<span style="font-size:0.9em" >&nbsp;&nbsp;Platform Independent Modules </span></li>
-  <li><span style="font-size:0.7em" >&nbsp;&nbsp;&nbsp;`/IntelFrameworkModulePkg/Universal/Acpi/`... </span></li><br>
+  <li><span style="font-size:0.7em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`/IntelFrameworkModulePkg/Universal/Acpi/`... </span></li><br>
   <li>@fa[circle gp-bullet-orange]<span style="font-size:0.9em" >&nbsp;&nbsp;ScriptSave driver </span></li>
-  <li><span style="font-size:0.7em" >&nbsp;&nbsp;&nbsp;`MdeModulePkg/Universal/Acpi/BootScriptExecutorDxe `</span></li><br>
+  <li><span style="font-size:0.7em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`MdeModulePkg/Universal/Acpi/BootScriptExecutorDxe `</span></li><br>
   <li>@fa[circle gp-bullet-blue]<span style="font-size:0.9em" >&nbsp;&nbsp;Platform Dependent Modules </span></li>
 </ul>
 
@@ -455,43 +455,9 @@ Note:
   - /Library/PlatformBdsLib/BdsPlatform.c:    // Prepare S3 information
    
 
-
----?image=/assets/images/slides/Slide31.JPG
-@title[ACPI S3 Additional Features]
-<p align="right"><span class="gold" ><b>ACPI S3 Additional Features</b></span></p>
-
-Note:
-
-- Platform Independent Modules
-  - /IntelFrameworkModulePkg/Universal/Acpi/...
-- Platform Dependent Modules (see below)
-- ScriptSave driver
-- DXE drivers call ScriptSave protocol to save the chipset and CPU configuration in normal boot path
-- The boot script engine in PEIM restores the chipset and CPU configuration done in previous DXE in S3 resume boot path
-  - MdeModulePkg/Universal/Acpi/BootScriptExecutorDxe
-
-
-#### PLATFORM dependant modules:
-- PEI:
-  - <PlatformPkg>.../PlatformPei/
-     -   BootMode.c:        // Check for recovery paths or just an S3 resume.
-     - MemoryCallback.c:  // Early exit for S3 resume path.
-     - Platform.c:        // On S3 path, clear SMI enable bits so it will not generate an SMI.
-
-  - <PlatformPkg>.../PlatformMemoryInit/MemoryInit.c
-          - // Get S3 resume information for MRC
-
-- DXE:
-   - <PlatformPkg>.../PlatformDxe/Platform.c:  // Set memory variable for S3 resume.
-   - <PlatformPkg>.../PlatformDxe/PlatformChipsetUpdate.c(100):  // We must save serial IRQ settings for S3 resume.
-
-- BDS:
-  - /Library/PlatformBdsLib/BdsPlatform.c:    // Prepare S3 information
-   
-
 ---?image=/assets/images/slides/Slide33.JPG
 @title[SMM/ACPI/S3 Table]
-<p align="right"><span class="gold" >SMM, ACPI, &S3 Table</span></p>
+<p align="right"><span class="gold" ><b>SMM, ACPI, &S3 Table</b></span></p>
 
 Note:
    
@@ -526,10 +492,58 @@ Note:
 
 - Type of memory test desired. While PEI performs a small one for the amount of RAM needed for PEI/DXE, the check of all the memory found during PEI/DXE is checked here. Once again the type of memory testing done is platform specific. This test can be sparse or rigorous.
 
+---
+@title[Compatibility Support Module (CSM)]
+<p align="right"><span class="gold" ><b>Compatibility Support Module (CSM)</b></span></p>
+<br>
+<ul style="list-style-type:none">
+  <li><span style="font-size:01.1em" ><font color="#92d050"><b> CSM 32 Component</b></font></span></li>
+   <ul style="list-style-type:none">
+      <li><span style="font-size:0.7em" >8259 Chipset - `PcAtChipsetPkg/8259InterruptControllerDxe`</span></li>
+      <li><span style="font-size:0.7em" >Legacy BIOS Region - `IntelFrameworkModulePkg/Csm`</span></li>
+   </ul>
+   <br>
+  <li><span style="font-size:01.1em" ><font color="#92d050"><b>Platform Specific </b></font></span></li>
+  <ul style="list-style-type:none">
+   <li><span style="font-size:0.7em" >Legacy chipset support - <font face="Consolas">&lt;RefCode&gt;Pkg/&lt;SoC&gt;/SouthCluster/LegacyInterrupt/Dxe</font></span></li>
+   <li><span style="font-size:0.7em" >Platform specifics (i.e. MP tables) - <font face="Consolas">&lt;RefCode&gt;Pkg/&lt;SoC&gt;/CPU/CpuInit/Dxe/MpCommon</font></span></li>
+   <li><span style="font-size:0.7em" >Video ROM (may be platform specific) - <font face="Consolas">NewPlatformPkg/PciPlatform</font></span></li>
+ </ul>
+
+</ul>
+```
+MinnowBoard Max
+  <RefCode>Pkg/<SoC>:   Vlv2DeviceRefCodePkg/ValleyView2Soc
+
+```
+
+
+Note:
+- CSM 32 Component 
+  - PcAtChipsetPkg/8259InterruptControllerDxe
+    - Used to manipulate the standard 8259 chipset
+  - IntelFrameworkModulePkg/Csm 
+     - Thunk & Reverse Thunk
+     - Legacy BIOS region support
+     - Legacy BIOS DXE/BDS phase support
+     - Plus other pieces of legacy support
+
+- Platform Specific
+  - Legacy chipset support
+    - <RefCode>Pkg/<SoC>/SouthCluster/LegacyInterrupt/Dxe
+  - Platform specifics (i.e. MP tables)
+     - <RefCode>Pkg/<SoC>/CPU/CpuInit/Dxe/MpCommon 
+  - Video ROM (may be platform specific)
+    - NewPlatformPkg/PciPlatform
+
+
+- MinnowBoard Max
+      - <RefCode>Pkg/<SoC>:   Vlv2DeviceRefCodePkg/ValleyView2Soc
+  
 
 ---?image=/assets/images/slides/Slide37.JPG
 @title[Compatibility Support Module (CSM)]
-<p align="right"><span class="gold" >Compatibility Support Module (CSM)</span></p>
+<p align="right"><span class="gold" ><b>Compatibility Support Module (CSM)</b></span></p>
 
 Note:
 - CSM 32 Component 
@@ -580,7 +594,7 @@ Note:
 
 ---?image=/assets/images/slides/Slide41.JPG
 @title[BDS/CSM/SMBIOS Table]
-<p align="right"><span class="gold" >BDS, CSM and SMBIOS Table</span></p>
+<p align="right"><span class="gold" ><b>BDS, CSM and SMBIOS Table</b></span></p>
 
 Note:
 
