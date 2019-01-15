@@ -495,6 +495,7 @@ Note:
 ---
 @title[Compatibility Support Module (CSM)]
 <p align="right"><span class="gold" ><b>Compatibility Support Module (CSM)</b></span></p>
+<br>
 <ul style="list-style-type:none">
   <li><span style="font-size:01.1em" ><font color="#92d050"><b> CSM 32 Component</b></font></span></li>
    <ul style="list-style-type:none">
@@ -516,33 +517,6 @@ MinnowBoard Max
 
 ```
 
-
-Note:
-- CSM 32 Component 
-  - PcAtChipsetPkg/8259InterruptControllerDxe
-    - Used to manipulate the standard 8259 chipset
-  - IntelFrameworkModulePkg/Csm 
-     - Thunk & Reverse Thunk
-     - Legacy BIOS region support
-     - Legacy BIOS DXE/BDS phase support
-     - Plus other pieces of legacy support
-
-- Platform Specific
-  - Legacy chipset support
-    - <RefCode>Pkg/<SoC>/SouthCluster/LegacyInterrupt/Dxe
-  - Platform specifics (i.e. MP tables)
-     - <RefCode>Pkg/<SoC>/CPU/CpuInit/Dxe/MpCommon 
-  - Video ROM (may be platform specific)
-    - NewPlatformPkg/PciPlatform
-
-
-- MinnowBoard Max
-      - <RefCode>Pkg/<SoC>:   Vlv2DeviceRefCodePkg/ValleyView2Soc
-  
-
----?image=/assets/images/slides/Slide37.JPG
-@title[Compatibility Support Module (CSM)]
-<p align="right"><span class="gold" ><b>Compatibility Support Module (CSM)</b></span></p>
 
 Note:
 - CSM 32 Component 
