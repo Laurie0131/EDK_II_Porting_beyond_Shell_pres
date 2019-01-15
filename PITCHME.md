@@ -309,16 +309,16 @@ Note:
 <br>
 <br>
 <p style="line-height:85%" align="left"><span style="font-size:0.9em;" >Base Protocol <br></span>
-<span style="font-size:0.65em; font-family:Consolas;" > /@color[red](IA32FamilyCpuPkg)/SmmBase/SmmBase.inf
+<span style="font-size:0.65em; font-family:Consolas;" > /@color[#ff4747](IA32FamilyCpuPkg)/SmmBase/SmmBase.inf
 </span></p>
 
 <p style="line-height:85%" align="left"><span style="font-size:0.9em;" >Access Protocol (SMRAM)<br></span>
-<span style="font-size:0.65em; font-family:Consolas;" > /@color[red](&lt;MemCntlX&gt;Pkg)/SmmAccessDxe/SmmAccessDxe.inf
+<span style="font-size:0.65em; font-family:Consolas;" > /@color[#ff4747](&lt;MemCntlX&gt;Pkg)/SmmAccessDxe/SmmAccessDxe.inf
 </span></p>
 
 
 <p style="line-height:85%" align="left"><span style="font-size:0.9em;" >Control Protocol (SMI)<br></span>
-<span style="font-size:0.65em; font-family:Consolas;" > /@color[red](&lt;PchX&gt;Pkg)/SmmControlDxe/SmmControlDxe.inf
+<span style="font-size:0.65em; font-family:Consolas;" > /@color[#ff4747](&lt;PchX&gt;Pkg)/SmmControlDxe/SmmControlDxe.inf
 </span></p>
 
 @snap[south-east span-100 ]
@@ -347,33 +347,6 @@ Note:
 
 
  
-
----?image=/assets/images/slides/Slide25.JPG
-@title[SMM]
-### <p align="right"><span class="gold" >SMM Related</span></p>
-
-
-Note:
-- Base Protocol
-  - Responsible for Processor state (in SMM) initialization and allocates SMM Memory
-    - /<XFamilyCpu>Pkg/SmmBase/SmmBase.inf
-- Access Protocol
-  - Controls the visibility of the SMRAM on the platform
-    - /<MemCntlX>Pkg/SmmAccessDxe/SmmAccessDxe.inf
-- Control Protocol
-  - Initiates SMI/PMI activations
-     - /<PchX>Pkg/SmmControlDxe/SmmControlDxe.inf
-
-- Additional notes:
-  - Get Drivers
-  - CPU and Silicon code from vendors should include all required SMM drivers
-  - You are required to provide platform-specific SMI handlers only
- 
-- MinnowBoard Max
-  - <Access> Vlv2DeviceRefCodePkg/ValleyView2Soc/CPU
-  - <Control> Vlv2DeviceRefCodePkg/ValleyView2Soc/SouthCluster
-
-
 
 ---?image=/assets/images/slides/Slide27.JPG
 @title[ACPI]
@@ -427,11 +400,65 @@ Note:
 - MinnowBoard Max
   - <Tables and ASL Code> Vlv2DeviceRefCodePkg/AcpiTablesPCAT
 
+---
+@title[ACPI S3 Additional Features]
+<p align="right"><span class="gold" ><b>ACPI S3 Additional Features</b></span></p>
+
+<ul style="list-style-type:none">  
+  <li>@fa[circle gp-bullet-cyan]<span style="font-size:0.9em" >&nbsp;&nbsp;Platform Independent Modules </span></li>
+  <li><span style="font-size:0.7em" >&nbsp;&nbsp;&nbsp;`/IntelFrameworkModulePkg/Universal/Acpi/`... </span></li><br>
+  <li>@fa[circle gp-bullet-orange]<span style="font-size:0.9em" >&nbsp;&nbsp;ScriptSave driver </span></li>
+  <li><span style="font-size:0.7em" >&nbsp;&nbsp;&nbsp;`MdeModulePkg/Universal/Acpi/BootScriptExecutorDxe `</span></li><br>
+  <li>@fa[circle gp-bullet-blue]<span style="font-size:0.9em" >&nbsp;&nbsp;Platform Dependent Modules </span></li>
+</ul>
+
+```
+PEI:                            // Check for recovery paths or just an S3 resume.
+ <NewProjectPkg>/PlatformInitPei/BootMode.c   // Get S3 resume information for MRC
+DXE:
+ <NewProjectPkg>/PlatformDxe/Platform.c       // Set memory variable for S3 resume.
+SMM:
+ <NewProjectPkg>/PlatformSmm/Platform.c       // Allocate reserved ACPI memory for S3 resume
+BDS:
+ <NewProjectPkg>/Library/PlatformBdsLib/BdsPlatform.c:    	// Prepare S3 information
+ 
+```
+
+
+
+Note:
+
+- Platform Independent Modules
+  - /IntelFrameworkModulePkg/Universal/Acpi/...
+- Platform Dependent Modules (see below)
+- ScriptSave driver
+- DXE drivers call ScriptSave protocol to save the chipset and CPU configuration in normal boot path
+- The boot script engine in PEIM restores the chipset and CPU configuration done in previous DXE in S3 resume boot path
+  - MdeModulePkg/Universal/Acpi/BootScriptExecutorDxe
+
+
+#### PLATFORM dependant modules:
+- PEI:
+  - <PlatformPkg>.../PlatformPei/
+     -   BootMode.c:        // Check for recovery paths or just an S3 resume.
+     - MemoryCallback.c:  // Early exit for S3 resume path.
+     - Platform.c:        // On S3 path, clear SMI enable bits so it will not generate an SMI.
+
+  - <PlatformPkg>.../PlatformMemoryInit/MemoryInit.c
+          - // Get S3 resume information for MRC
+
+- DXE:
+   - <PlatformPkg>.../PlatformDxe/Platform.c:  // Set memory variable for S3 resume.
+   - <PlatformPkg>.../PlatformDxe/PlatformChipsetUpdate.c(100):  // We must save serial IRQ settings for S3 resume.
+
+- BDS:
+  - /Library/PlatformBdsLib/BdsPlatform.c:    // Prepare S3 information
+   
 
 
 ---?image=/assets/images/slides/Slide31.JPG
 @title[ACPI S3 Additional Features]
-<p align="right"><span class="gold" >ACPI S3 Additional Features</span></p>
+<p align="right"><span class="gold" ><b>ACPI S3 Additional Features</b></span></p>
 
 Note:
 
