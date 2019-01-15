@@ -242,7 +242,7 @@ Note:
 @fa[check-circle fa-2x gp-bullet-cyan]
 <br>
 <br>
-@fa[clipboard-check fa-2x gp-bullet-yellow]
+@fa[clipboard fa-2x gp-bullet-yellow]
 <br>
 @snapend
 
@@ -251,8 +251,7 @@ Note:
 <br>
 <br>
 <br>
-<p style="line-height:75%" align="left"><span style="font-size:0.9em">DSC maps library class to library-instances
-UEFI Device Driver Model- <br>@size[0.6em](See Section 2.6.3 of UEFI Specification <br>Follow the UEFI Driver Binding Protocol)
+<p style="line-height:75%" align="left"><span style="font-size:0.9em">UEFI Device Driver Model- <br>@size[0.6em](See Section 2.6.3 of UEFI Specification <br>Follow the UEFI Driver Binding Protocol)
 </span></p>
 <br>
 @snapend
