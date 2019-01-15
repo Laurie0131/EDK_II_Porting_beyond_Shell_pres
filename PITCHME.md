@@ -1,6 +1,8 @@
 ---?image=assets/images/gitpitch-audience.jpg
 @title[EDK_II_Porting_Projects_pres]
-<br><br><br><br><br>
+<br><br><br>
+<span style="font-size:0.75em" >This slide deck has moved to:  https://gitpitch.com/tianocore-training/EDK_II_Porting_beyond_Shell_pres/master#/
+<br><br>
 ## <span class="gold"   >UEFI & EDK II Training</span>
 
 #### Porting Beyond the Shell 
@@ -50,6 +52,51 @@ Note:
  <li>@fa[certificate gp-bullet-cyan]<span style="font-size:0.9em">&nbsp;&nbsp;Determine the protocols then the UEFI Driver<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with Devices on a platform</span></li>
  <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;The goal is to boot to the OS</span></li>
 </ul>
+
+
+
+---
+@title[Features Needed to Access OS]
+<p align="right"><span class="gold" ><b>Features Needed to Access OS</b></span></p>
+@snap[north-west span-90 fragment]
+<br>
+<br>
+<p style="line-height:50%" ><br>&nbsp;</p>
+<p style="line-height:75%" align="left"><span style="font-size:0.85em">&nbsp;&nbsp;Add-in Card/ UEFI Driver Related</span></p>
+@box[bg-royal text-white rounded my-box-pad2  ](<p style="line-height:70%" ><span style="font-size:0.9em; font-weight: bold;" >&nbsp;&nbsp;USB&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;LAN <br> &nbsp;&nbsp;IDE/SATA&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Graphics <br> &nbsp;&nbsp;Integrated PCI Devices <br>&nbsp;</span></p>)
+<br>
+@snapend
+
+@snap[north-west span-90 fragment]
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p style="line-height:50%" ><br><br><br>&nbsp;</p>
+<p style="line-height:75%" align="left"><span style="font-size:0.85em">&nbsp;&nbsp;Platform Related DXE Driver Related </span></p>
+@box[bg-purple-pp text-white rounded my-box-pad2  ](<p style="line-height:70%" ><span style="font-size:0.9em; font-weight: bold;" > &nbsp;&nbsp;SMM &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  ACPI <br> &nbsp;&nbsp;ACPI S3 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; BDS <br> &nbsp;&nbsp;CSM &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; SMBIOS <br> &nbsp;&nbsp;<br>&nbsp;</span></p>)
+<br>
+@snapend
+
+Note:
+
+- Add-in Card/ UEFI Driver Related
+  - USB
+  - LAN
+  - IDE/SATA
+  - Graphics 
+  - Integrated PCI Devices 
+
+- Platform Related DXE Driver Related
+  - SMM
+  - ACPI
+  - ACPI S3
+  - BDS
+  - CSM
+  - SMBIOS
+
 
 
 
